@@ -72,17 +72,6 @@ export default function LoginPage() {
     setRegLoading(false)
   }
 
-  const demoAccounts = [
-    { role: 'Admin', email: 'admin@hadir.app', pass: 'password123' },
-    { role: 'Mentor', email: 'mentor@hadir.app', pass: 'password123' },
-    { role: 'Pendamping', email: 'pendamping@hadir.app', pass: 'password123' },
-  ]
-
-  const fillDemo = (acc: typeof demoAccounts[0]) => {
-    setEmail(acc.email)
-    setPassword(acc.pass)
-  }
-
   return (
     <div className="min-h-screen bg-[#0A0F1C] flex items-center justify-center p-4">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="w-full max-w-md">
@@ -196,32 +185,12 @@ export default function LoginPage() {
         </motion.div>
 
         {!showRegister && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-6">
-              <p className="text-xs text-[#64748B] text-center mb-3">Akun Demo</p>
-              <div className="space-y-2">
-                {demoAccounts.map((acc) => (
-                  <button key={acc.email} onClick={() => fillDemo(acc)}
-                    className="w-full flex items-center gap-3 p-3 bg-[#111827]/50 border border-[#1E293B] rounded-lg hover:border-[#FBBF24]/50 hover:bg-[#1E293B]/50 transition-all text-left">
-                    <div className="w-8 h-8 rounded-full bg-[#FBBF24]/20 flex items-center justify-center">
-                      <span className="text-xs font-bold text-[#FBBF24]">{acc.role[0]}</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-[#F8FAFC]">{acc.role}</p>
-                      <p className="text-xs text-[#64748B] truncate">{acc.email}</p>
-                    </div>
-                    <span className="text-[10px] text-[#64748B] bg-[#1E293B] px-2 py-0.5 rounded">{acc.pass}</span>
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-            <p className="text-center mt-4">
-              <button onClick={() => setShowRegister(true)}
-                className="text-xs text-[#FBBF24] hover:text-[#F59E0B] transition-colors">
-                Belum punya akun? Daftar
-              </button>
-            </p>
-          </>
+          <p className="text-center mt-6">
+            <button onClick={() => setShowRegister(true)}
+              className="text-xs text-[#FBBF24] hover:text-[#F59E0B] transition-colors">
+              Belum punya akun? Daftar
+            </button>
+          </p>
         )}
       </motion.div>
     </div>
