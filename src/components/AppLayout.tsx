@@ -26,7 +26,7 @@ function getNavItems(role: UserRole): NavItem[] {
     { path: '/mentor-schedule', label: 'Jadwal', icon: Calendar, roles: ['mentor', 'admin'] },
     { path: '/requests', label: 'Pengajuan', icon: FileText, roles: ['mentor', 'pendamping'] },
     { path: '/verification', label: 'Verifikasi', icon: Shield, roles: ['admin'] },
-    { path: '/reports', label: 'Laporan', icon: BarChart3, roles: ['admin'] },
+    { path: '/reports', label: 'Laporan', icon: BarChart3, roles: ['admin', 'pendamping'] },
     { path: '/assignments', label: 'Penugasan', icon: Briefcase, roles: ['admin'] },
     { path: '/users', label: 'Pengguna', icon: Users, roles: ['admin'] },
     { path: '/settings', label: 'Pengaturan', icon: Settings, roles: ['admin', 'mentor', 'pendamping'] },

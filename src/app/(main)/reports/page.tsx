@@ -28,9 +28,12 @@ export default function ReportsPage() {
       ])
       setUsers(usr); setAttendances(att); setDailyLogs(dl)
       setLeaves(lv); setSchedules(sch)
+      if (user?.role === 'pendamping') {
+        setSelectedUser(user.uid)
+      }
     }
     load()
-  }, [])
+  }, [user])
 
   const [year, month] = selectedMonth.split('-').map(Number)
   const monthStart = startOfMonth(new Date(year, month - 1))
@@ -96,11 +99,17 @@ export default function ReportsPage() {
             </div>
             <div>
               <label className="block text-xs text-[#94A3B8] mb-1">Pengguna</label>
-              <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}
-                className="w-full px-3 py-2.5 bg-[#0A0F1C] border border-[#1E293B] rounded-lg text-[#F8FAFC] text-sm focus:outline-none focus:border-[#FBBF24]">
-                <option value="all">Semua Pengguna</option>
-                {users.map(u => <option key={u.uid} value={u.uid}>{u.name} ({u.role})</option>)}
-              </select>
+              {user?.role === 'pendamping' ? (
+                <div className="w-full px-3 py-2.5 bg-[#0A0F1C] border border-[#1E293B] rounded-lg text-[#F8FAFC] text-sm opacity-60">
+                  {user.name}
+                </div>
+              ) : (
+                <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}
+                  className="w-full px-3 py-2.5 bg-[#0A0F1C] border border-[#1E293B] rounded-lg text-[#F8FAFC] text-sm focus:outline-none focus:border-[#FBBF24]">
+                  <option value="all">Semua Pengguna</option>
+                  {users.map(u => <option key={u.uid} value={u.uid}>{u.name} ({u.role})</option>)}
+                </select>
+              )}
             </div>
           </div>
 
@@ -206,7 +215,7 @@ export default function ReportsPage() {
                 <p className="text-sm text-[#0F172A]">Salatiga, {format(new Date(), 'd MMMM yyyy', { locale: id })}</p>
                 <p className="text-sm text-[#666] mt-8">...............................</p>
                 <p className="text-sm text-[#0F172A] font-medium">{user?.name}</p>
-                <p className="text-xs text-[#666]">Admin HADIR</p>
+                <p className="text-xs text-[#666] capitalize">{user?.role === 'pendamping' ? 'Pendamping' : 'Admin'} HADIR</p>
               </div>
             </div>
           </motion.div>
